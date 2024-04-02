@@ -13,4 +13,6 @@ The inspiration behind Desktop Tasks is to provide users with a way to manage th
 ## Usage
 
 ### Installation
-1. Go to the [releases page](https://github.com/saviosajanm/DesktopTasks/releases/)
+1. Go to the [releases page](https://github.com/saviosajanm/DesktopTasks/releases/) and download the latest installer "DesktopTasksInstaller.exe"
+   ![Releases page](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/downloadpage.png)
+3. 
