@@ -9,3 +9,8 @@ Desktop Tasks is an application inspired by the iconic desktop widgets of Window
 
 
 The inspiration behind Desktop Tasks is to provide users with a way to manage their tasks and stay organized. By integrating task management directly into the desktop environment, users can effortlessly keep track of their to-do lists and ensure nothing falls through the cracks. The application aims to enhance productivity and efficiency by providing users with immediate access to their tasks the moment they turn on their computer. Desktop Tasks is a promising application that aims to revolutionize task management by bringing it directly to the user's desktop. With its interface and integration, Desktop Tasks is poised to become an indispensable tool for users looking to stay organized and productive.
+
+## Usage
+
+### Installation
+1.    
