@@ -29,35 +29,54 @@ The inspiration behind Desktop Tasks is to provide users with a way to manage th
 
 ## Usage
 
+---
+
 ### Adding a task:
 
 ![Adding steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/add.png)
 
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "***Cancel***". After filling all the details, click on the "***Add***" button.
+
+---
 
 ### Editing a task:
 
 ![Editing steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/edit.png)
 
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+To edit a task, first click on the task in the left pane that you want to edit. When you click on that task, the task details will fill all the inputs in the right pane. Then change these inputs to whatever you want. Once you are done with changing the values, click on the "***Edit***" button and the changes will be reflected onto the desktop background.
+
+---
 
 ### Deleting a task:
 
 ![Deleting steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/delete.png)
 
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+To delete a task, simply click on the task in the left pane that you want to delete. Once the task details fill the inputs in the right pane, click on the "***Delete***" button. This will automatically reflect on the desktop background.
+
+---
 
 ### Configuring the box features:
 
 ![Configuring steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/config.png)
 
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+To configure the box propertieas accross all tasks, go to the ***config.ini*** file inside the installation directory of the application. Edit the different values of the configuration file in accordance with how you want your boxes to look. 
+Some key notes:
+* ***box_width*** basically represents how many tasks do you want to put side by side accross the screen. If say box_width = 7, that means the width of the box is set in such a way that at max 7 boxes of equal width can be stacked next to each other accross the screen width.
+* ***font*** is the font used for all the tasks' text. To use any font you like, place the .ttf file of that font into the fonts folder of the installation directory. Then set this variable value in the config file to the name of the font.
+* ***box_margin*** is basically the space between each individual task box and between themselves and the display borders.
+* ***box_padding*** is the amount of vertical space within the box. This is usually set when the text within the box is to be approppriately sized and spaced inside the borders of the box.
+* ***border_radius*** and ***border_width*** are self explanatory and determine the border radius and width of all task boxes.
+* ***taskbar_present*** is a binary value (1 or 0) which represents whether there is a taskbar present on the screen. This is applicable especially for people who sometimes prefer to set their taskbar to "auto-hide". For such users, they can set this value to 0, else 1.
+
+---
 
 ### Setting the new background after a desktop background change:
 
 ![Background steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/reset.png)
 
 To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
+---
 
 ### Clearing all the tasks:
 
