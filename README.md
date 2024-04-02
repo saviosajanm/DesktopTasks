@@ -30,5 +30,37 @@ The inspiration behind Desktop Tasks is to provide users with a way to manage th
 ## Usage
 
 ### Adding a task:
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
 ![Adding steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/add.png)
+
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
+### Editing a task:
+
+![Editing steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/edit.png)
+
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
+### Deleting a task:
+
+![Deleting steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/delete.png)
+
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
+### Configuring the box features:
+
+![Configuring steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/config.png)
+
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
+### Setting the new background after a desktop background change:
+
+![Background steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/reset.png)
+
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+
+### Clearing all the tasks:
+
+![Clearing steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/clear.png)
+
+To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
