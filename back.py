@@ -87,7 +87,7 @@ def update_tasks(date_time="", desc="", action="pass", colors=(-1, (255, 255, 25
     padding = int(config['Main']['box_padding'])
 
     # Define box width and initial position
-    box_width = (resolution[0] // int(config['Main']['size']))
+    box_width = (resolution[0] // int(config['Main']['box_width']))
     x = resolution[0] - margin  # Start from the right side
     y = margin
 

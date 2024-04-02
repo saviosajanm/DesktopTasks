@@ -8,7 +8,7 @@ from tkcalendar import Calendar
 import datetime
 from back import update_tasks
 from PIL import Image
-from utils import get_desktop_background, hex_to_rgb, wrap_text, convert_to_datetime, rgb_to_hex
+from utils import get_desktop_background, hex_to_rgb, wrap_text, convert_to_datetime, rgb_to_hex, get_text_color
 import os
 
 current_dir = os.getcwd()
@@ -26,9 +26,13 @@ def change_color_1():
     colors = askcolor(title="Choose Border Color")
     if colors == (None, None):
         color_1.configure(bg="#f0f0f0")
+        color_1.configure(fg="#000000")
+        color_1.configure(text="(Default: White)")
         BORDER = (255, 255, 255)
     else:    
         color_1.configure(bg=colors[1])
+        color_1.configure(text=colors[1])
+        color_1.configure(fg=get_text_color(colors[1]))
         BORDER = hex_to_rgb(colors[1])
     
 def change_color_2():
@@ -36,9 +40,13 @@ def change_color_2():
     colors = askcolor(title="Choose Fill Color")
     if colors == (None, None):
         color_2.configure(bg="#f0f0f0")
+        color_2.configure(fg="#000000")
+        color_2.configure(text="(Default: Transparent fill)")
         FILL = -1
     else:    
         color_2.configure(bg=colors[1])
+        color_2.configure(text=colors[1])
+        color_2.configure(fg=get_text_color(colors[1]))
         FILL = hex_to_rgb(colors[1])
     
 def change_color_3():
@@ -46,9 +54,13 @@ def change_color_3():
     colors = askcolor(title="Choose Text Color")
     if colors == (None, None):
         color_3.configure(bg="#f0f0f0")
+        color_3.configure(fg="#000000")
+        color_3.configure(text="(Default: White)")
         TEXT = (255, 255, 255)
     else:    
         color_3.configure(bg=colors[1])
+        color_3.configure(text=colors[1])
+        color_3.configure(fg=get_text_color(colors[1]))
         TEXT = hex_to_rgb(colors[1])
     
 def on_mousewheel(event):
@@ -128,16 +140,24 @@ def button_click_handler(desc, date_time, c):
     am_pm = datetime_obj.strftime("%p")
     entry_1.delete(0, tk.END)  # Delete from index 0 (beginning) to END
     entry_1.insert(tk.END, desc)
-    entry_2.config(value=hour)  # Use config(value=...)
-    entry_3.config(value=minute)  # Use config(value=...)
+    hour_var.set(int(hour))
+    minute_var.set(int(minute))
     combo.set(am_pm)
     cal.selection_set(date) 
     color_1.configure(bg=rgb_to_hex(c[2]))
+    color_1.configure(text=rgb_to_hex(c[2]))
+    color_1.configure(fg=get_text_color(rgb_to_hex(c[2])))
     if c[0] == -1:
         color_2.configure(bg="#f0f0f0")
+        color_2.configure(fg="#000000")
+        color_2.configure(text="(Default: Transparent fill)")
     else:
         color_2.configure(bg=rgb_to_hex(c[0]))
+        color_2.configure(text=rgb_to_hex(c[0]))
+        color_2.configure(fg=get_text_color(rgb_to_hex(c[0])))
     color_3.configure(bg=rgb_to_hex(c[1]))
+    color_3.configure(text=rgb_to_hex(c[1]))
+    color_3.configure(fg=get_text_color(rgb_to_hex(c[1])))
     FILL = c[0]
     TEXT = c[1]
     BORDER = c[2]
@@ -208,13 +228,19 @@ def new():
     global FILL, BORDER, TEXT
     entry_1.delete(0, tk.END)  # Delete from index 0 (beginning) to END
     entry_1.insert(tk.END, "")
-    entry_2.config(value=1)  # Use config(value=...)
-    entry_3.config(value=0)  # Use config(value=...)
+    hour_var.set(int(1))
+    minute_var.set(int(0))
     combo.set("AM")
-    cal.selection_set(datetime.datetime.now()) 
+    cal.selection_set(datetime.datetime.now())
     color_1.configure(bg="#f0f0f0")
+    color_1.configure(fg="#000000")
+    color_1.configure(text="(Default: White)")
     color_2.configure(bg="#f0f0f0")
+    color_2.configure(fg="#000000")
+    color_2.configure(text="(Default: Transparent fill)")
     color_3.configure(bg="#f0f0f0")
+    color_3.configure(fg="#000000")
+    color_3.configure(text="(Default: White)")
     FILL, BORDER, TEXT = -1, (255, 255, 255), (255, 255, 255)
 
 def reset_bg():
@@ -314,16 +340,16 @@ button_7 = Button(
 )
 button_7.place(x=250.0, y=480.0, width=99.0, height=29.0)
 
-#entry_image_1 = tk.PhotoImage(file=relative_to_assets("entry_1.png"))
+
 entry_1 = ttk.Entry(frame_right, style="borderless.TEntry", foreground="#000716")
 entry_1.place(x=13.0, y=32.0, width=337.0, height=28.0)
 
-#entry_image_2 = tk.PhotoImage(file=relative_to_assets("entry_2.png"))
-#entry_2 = ttk.Entry(frame_right, style="borderless.TEntry", foreground="#000716")
-entry_2 = tk.Spinbox(frame_right, from_= 1, to = 12, increment=1)
-entry_2.place(x=13.0, y=92.0, width=96.0, height=36.0)
+hour_var = tk.StringVar(value=1)  # Create a StringVar for hour
+minute_var = tk.StringVar(value=0)  # Create a StringVar for minute
 
-entry_3 = tk.Spinbox(frame_right, from_= 0, to = 59, increment=1)
+entry_2 = tk.Spinbox(frame_right, textvariable=hour_var, from_=1, to=12, increment=1)
+entry_2.place(x=13.0, y=92.0, width=96.0, height=36.0)
+entry_3 = tk.Spinbox(frame_right, textvariable=minute_var, from_=0, to=59, increment=1)
 entry_3.place(x=13.0, y=167.0, width=96.0, height=36.0)
 
 combo = ttk.Combobox(
@@ -370,10 +396,10 @@ label7.place(x=13.0, y=142.0)
 
 color_1 = Button(
     frame_right,
-    text="Choose border  (Default: White)",
+    text="(Default: White)",
     borderwidth=0,
     highlightthickness=0,
-    foreground="#000716",
+    foreground="#000000",
     command=change_color_1,
     relief="flat",
 )
@@ -381,10 +407,10 @@ color_1.place(x=13.0, y=400.0, width=337.0, height=28.0)
 
 color_2 = Button(
     frame_right,
-    text="Choose fill (Default: transparent fill)",
+    text="(Default: Transparent fill)",
     borderwidth=0,
     highlightthickness=1,
-    foreground="#000716",
+    foreground="#000000",
     command=change_color_2,
     relief="flat"
 )
@@ -392,10 +418,10 @@ color_2.place(x=13.0, y=282.0, width=337.0, height=28.0)
 
 color_3 = Button(
     frame_right,
-    text="Choose text (Default: White)",
+    text="(Default: White)",
     borderwidth=0,
     highlightthickness=0,
-    foreground="#000716",
+    foreground="#000000",
     command=change_color_3,
     relief="flat"
 )

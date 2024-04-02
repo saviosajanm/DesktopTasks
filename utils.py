@@ -91,3 +91,18 @@ def pixels_to_characters(width, font_path, font_size, text='ABCDEFGHIJKLMNOPQRST
         else:
             break
     return len(chars)
+
+def get_text_color(box_color_hash):
+    # Extract RGB components from the color hash
+    red = int(box_color_hash[1:3], 16)
+    green = int(box_color_hash[3:5], 16)
+    blue = int(box_color_hash[5:], 16)
+    
+    # Calculate luminance using the formula for relative luminance (perceptual brightness)
+    luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255
+    
+    # Determine text color based on luminance
+    if luminance > 0.5:
+        return 'black'  # Use black text for light colors
+    else:
+        return 'white'  # Use white text for dark colors
