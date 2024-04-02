@@ -74,7 +74,10 @@ Some key notes:
 
 ![Background steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/reset.png)
 
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+If the user wants to change their current background to a new one, they should make sure that the new background should be set as "stretch" in the windows settings menu. Once set, click on the "***Set this background as tasks background***" button, after which the application will register this new background as the background for tasks to be drawn on. If there are any active tasks that are lost after the background change, clicking this button will redraw these tasks onto the new background.
+
+#### WARNING:
+***Press this button ONLY AFTER setting the new background onto the desktop. If done so before, the background with the tasks already drawn on it will be registered as the base background and any further tasks added, edited or deleted will be drawn over this background without removing the tasks already previously drawn on it. If this accident occurs, you will have to clear all tasks and then manually set the original base background in the windows settings to correct this.***
 
 ---
 
@@ -82,4 +85,8 @@ To add a task, entering the description, hour, minute, date of the task is manda
 
 ![Clearing steps](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/clear.png)
 
-To add a task, entering the description, hour, minute, date of the task is mandatory. To edit the colors of each component of the box namely the text, filling and border, click on the buttons to open the color selector and select the desired color for each component. To set to the default color, leave it as is or if inside the color selector, click on "Cancel"
+To clear all the tasks, simply click on the "***Clear all***" button and all the tasks will be automatically cleared from the registry and the desktop background itself.
+
+---
+
+## Note: This is an early build and a hobby project, so further development on this project may not be consistent.
