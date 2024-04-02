@@ -28,3 +28,6 @@ The inspiration behind Desktop Tasks is to provide users with a way to manage th
 4. Click "Finish" once the installation is done.
    
    ![installation finish](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/complete.png)
+
+
+---
