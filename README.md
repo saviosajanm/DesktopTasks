@@ -2,12 +2,6 @@
 Desktop Tasks is an application inspired by the iconic desktop widgets of Windows 7. With this application, users can create, edit, and delete tasks directly on their desktop background. The main goal of Desktop Tasks is to provide users with a convenient way to stay organized and never miss out on important tasks.
 
 ## Features
-* Task Management: Users can easily create, edit, and delete tasks directly from their desktop.
-* Dynamic Background: Desktop Tasks v0.1 fetches the current desktop background image and overlays tasks on top of it.
-* Seamless Integration: The application seamlessly integrates with the desktop environment, allowing users to interact with their tasks without disrupting their workflow.
-* Task Reminders: By displaying tasks on the desktop background, users are reminded of their tasks every time they turn on their computer, ensuring they stay on top of their to-do list.
-
-## How it Works
 * Fetch Background Image: Desktop Tasks retrieves the current desktop background image.
 * Task Manipulation: Users can create, edit, or delete tasks using the application's intuitive interface.
 * Overlay Tasks: The application overlays the tasks onto the background image, ensuring they are prominently displayed on the desktop.
