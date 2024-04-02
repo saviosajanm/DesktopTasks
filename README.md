@@ -20,5 +20,7 @@ The inspiration behind Desktop Tasks is to provide users with a way to manage th
    ![setup path](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/setup1.png)
 
 3. Continue with the setup including deciding whether the app should have a desktop shortcut created or not, and then click "Install" to initiate the installation
-
-4. Click "Finish" once the installation is done. 
+   ![shortcut choice](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/shortcut.png)
+   
+5. Click "Finish" once the installation is done.
+   ![installation finish](https://github.com/saviosajanm/DesktopTasks/blob/main/photos/complete.png)
