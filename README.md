@@ -13,4 +13,4 @@ The inspiration behind Desktop Tasks is to provide users with a way to manage th
 ## Usage
 
 ### Installation
-1.    
+1. Go to the [releases page](https://github.com/saviosajanm/DesktopTasks/releases/)
