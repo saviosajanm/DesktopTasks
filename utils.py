@@ -57,20 +57,28 @@ def wrap_text_x(text, font, max_width):
     lines.append(line.strip())
     return lines
 
-def convert_to_datetime(date_str, hour_str, minute_str, ampm):
+def convert_to_datetime(date_str, hour_str, minute_str, ampm, exctime, excdate):
     year = int(date_str[:4])
     month = int(date_str[5:7])
     day = int(date_str[8:])
     hour = int(hour_str)
     if ampm == "PM" and hour != 12:
-      hour += 12  # Convert hour to 24-hour format in PM cases (except 12 PM)
+        hour += 12  # Convert hour to 24-hour format in PM cases (except 12 PM)
     elif ampm == "AM" and hour == 12:
-      hour = 0  # Convert 12 AM to 00 in 24-hour format
+        hour = 0  # Convert 12 AM to 00 in 24-hour format
     minute = int(minute_str)
     if not (1 <= hour <= 24 and 0 <= minute <= 59):
-      raise ValueError("Invalid hour or minute value")
+        raise ValueError("Invalid hour or minute value")
     combined_datetime = datetime.datetime(year, month, day, hour, minute)
-    return combined_datetime.strftime("%Y-%m-%d %H:%M:%S")
+
+    if exctime and excdate:
+        return ""
+    elif exctime:
+        return combined_datetime.strftime("%H:%M:%S")
+    elif excdate:
+        return combined_datetime.strftime("%Y-%m-%d")
+    else:
+        return combined_datetime.strftime("%Y-%m-%d %H:%M:%S")
 
 def rgb_to_hex(rgb_tuple):
     hex_code = "#" + ''.join(f"{val:02x}" for val in rgb_tuple)

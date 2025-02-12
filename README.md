@@ -1,4 +1,4 @@
-# Desktop Tasks v0.1
+# Desktop Tasks v0.2
 
 Desktop Tasks is an application inspired by the iconic desktop widgets of Windows 7. With this application, users can create, edit, and delete tasks directly on their desktop background. The main goal of Desktop Tasks is to provide users with a convenient way to stay organized and never miss out on important tasks.
 
@@ -92,4 +92,13 @@ To clear all the tasks, simply click on the "***Clear all***" button and all the
 
 ---
 
+## 0.2 Update changes:
+
+* Created a new window to make updating configuration easier and more instant
+* Added the options to choose if you want to skip date and/or time while adding tasks
+* Fixed bugs including task view scrollbar upward scrolling enabled and some tasks not being able to be deleted
+
+---
+
 ## Note: This is an early build and a hobby project, so further development on this project may not be consistent.
+

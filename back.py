@@ -19,8 +19,76 @@ def get_taskbar_height():
     height = rect.bottom - rect.top
     return height
 
+def sort_key(x):
+    date_time = x.get('date_time', '').strip()
+
+    # Case 1: Empty string
+    if date_time == '':
+        return (4,)
+
+    # Case 2: Date-only (format '%Y-%m-%d')
+    try:
+        # Try parsing it as date-only
+        date_obj = datetime.strptime(date_time, '%Y-%m-%d')
+        return (3, date_obj)  # Return as date-only, sorted last but by date
+    except ValueError:
+        pass  # Not a date-only, proceed to check for other cases
+
+    # Case 3: Time-only (format '%H:%M:%S')
+    try:
+        # Try parsing it as time-only
+        time_obj = datetime.strptime(date_time, '%H:%M:%S')
+        return (1, time_obj)  # Return as time-only, sorted first, then by time
+    except ValueError:
+        pass  # Not time-only, proceed to check for date-time
+
+    # Case 4: Date and time (format '%Y-%m-%d %H:%M:%S')
+    try:
+        # Try parsing it as date and time
+        date_time_obj = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
+        return (2, date_time_obj)  # Return as date-time, sorted in the middle, by date-time
+    except ValueError:
+        pass  # In case there's an unexpected value
+
+    # If none of the above, return a large value for unknown or malformed dates
+    return (5,)
+
+def format_datetime(date_time_str):
+    # Case 1: If it's an empty string, just return it
+    if not date_time_str.strip():
+        return date_time_str
+
+    # Case 2: If it's a date-only format ('%Y-%m-%d')
+    try:
+        date_obj = datetime.strptime(date_time_str, '%Y-%m-%d')
+        return date_time_str  # Return the date-only string as it is
+    except ValueError:
+        pass  # Not a date-only, proceed to next case
+
+    # Case 3: If it's a time-only format ('%H:%M:%S')
+    try:
+        time_obj = datetime.strptime(date_time_str, '%H:%M:%S')
+        # Convert to 12-hour format with AM/PM
+        return time_obj.strftime('%I:%M %p')
+    except ValueError:
+        pass  # Not a time-only, proceed to next case
+
+    # Case 4: If it's a full date-time format ('%Y-%m-%d %H:%M:%S')
+    try:
+        date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+        # Convert to 12-hour format with AM/PM and include date
+        return date_time_obj.strftime('%I:%M %p, %Y-%m-%d')
+    except ValueError:
+        pass  # Not a valid format, return original string as is
+
+    # If none of the above, just return the original string
+    return date_time_str
+
 def update_tasks(date_time="", desc="", action="pass", colors=(-1, (255, 255, 255), (255, 255, 255)), prev = -1):
-    
+    if not desc:
+        desc = "-----"
+    if not date_time:
+        date_time = "-----"
     config.read('config.ini')
     
     # Check if tasks.json exists and is not empty
@@ -51,7 +119,12 @@ def update_tasks(date_time="", desc="", action="pass", colors=(-1, (255, 255, 25
         for i in range(len(colors)):
             if type(colors[i]) == tuple:
                 colors[i] = list(colors[i])
-        tasks = [task for task in tasks if not (task['date_time'] == date_time and task['desc'] == desc and task["color"] == colors)]
+
+        for i, task in enumerate(tasks):
+            if task['date_time'] == date_time and task['desc'] == desc and task["color"] == colors:
+                tasks.pop(i)  # Remove only the first occurrence
+                break  # Stop after deleting the first match
+
         if len(tasks) == 0:
             background_image.save("output.png")
             SPI_SETDESKWALLPAPER = 20
@@ -59,22 +132,24 @@ def update_tasks(date_time="", desc="", action="pass", colors=(-1, (255, 255, 25
         with open('tasks.json', 'w') as f:
             json.dump(tasks, f)
     elif action == "edit":
-        colors_x = list(prev["color"])
-        for i in range(len(colors_x)):
-            if type(colors_x[i]) == tuple:
-                colors_x[i] = list(colors_x[i])
-        for i in range(len(tasks)):
-            if tasks[i]['date_time'] == prev["date_time"] and tasks[i]['desc'] == prev["desc"] and tasks[i]["color"] == colors_x:
-                tasks[i]['date_time'], tasks[i]['desc'], tasks[i]["color"] = date_time, desc, colors
-        with open('tasks.json', 'w') as f:
-            json.dump(tasks, f)
-        if len(tasks) == 0:
-            background_image.save("output.png")
-            SPI_SETDESKWALLPAPER = 20
-            ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, os.path.abspath("original.png").encode(), 0)
+        if prev:
+            colors_x = list(prev["color"])
+            for i in range(len(colors_x)):
+                if type(colors_x[i]) == tuple:
+                    colors_x[i] = list(colors_x[i])
+            for i in range(len(tasks)):
+                if tasks[i]['date_time'] == prev["date_time"] and tasks[i]['desc'] == prev["desc"] and tasks[i]["color"] == colors_x:
+                    tasks[i]['date_time'], tasks[i]['desc'], tasks[i]["color"] = date_time, desc, colors
+            with open('tasks.json', 'w') as f:
+                json.dump(tasks, f)
+            if len(tasks) == 0:
+                background_image.save("output.png")
+                SPI_SETDESKWALLPAPER = 20
+                ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, os.path.abspath("original.png").encode(), 0)
 
     # Sort tasks by date_time (ascending)
-    tasks.sort(key=lambda x: datetime.strptime(x['date_time'], '%Y-%m-%d %H:%M:%S'))
+    #tasks.sort(key=lambda x: datetime.strptime(x['date_time'], '%Y-%m-%d %H:%M:%S'))
+    tasks.sort(key=sort_key)
     
     image = Image.new("RGBA", resolution, (255, 255, 255, 0))
     image.paste(Image.open("original.png"), (0, 0))
@@ -98,7 +173,7 @@ def update_tasks(date_time="", desc="", action="pass", colors=(-1, (255, 255, 25
     # Draw boxes for each task
     for task in tasks:
         # Format date and time
-        date_time_str = datetime.strptime(task['date_time'], '%Y-%m-%d %H:%M:%S').strftime('%I:%M %p, %Y-%m-%d')
+        date_time_str = format_datetime(task['date_time'])
         desc_lines = wrap_text_x(task['desc'], font, box_width)
 
         # Calculate text height based on description and date_time
